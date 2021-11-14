@@ -1,0 +1,31 @@
+## Question 1
+
+###Create a deployment file called app using the image sirfragalot/docker-demo:dcus. 
+###The deployment must have two replicas.
+###Please name the file DeploymentTest.yaml.
+
+### Question 3
+###Expose the Deployment so that app's contents can be seen on your local machine. 
+### Hint - sirfragalot/docker-demo:dcus runs on port 8080
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: test
+  name: test
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - image: sirfragalot/docker-demo:dcus
+        imagePullPolicy: Always
+        name: test
+        ports:
+        - containerPort: 8080
